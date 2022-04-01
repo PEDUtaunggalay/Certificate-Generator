@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import pandas as pd
 
 #Import the file that contains all the details
-data = pd.read_excel("file.xlsx")
+data = pd.read_excel("fb.xlsx")
 
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
@@ -21,7 +21,7 @@ for idx, i in enumerate(name_list):
     d = ImageDraw.Draw(im)
     location = (275, 1050)
     text_color = (0, 137, 209)
-    font = ImageFont.truetype("AlexBrush-Regular.ttf", 250, encoding="unic")
+    font = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
     d.text(location, i.title(), fill=text_color,font=font)
     im.save("certificate_"+i+".pdf")
     print("(%d/%d) Certificate Created for:  %s" % (idx+1, max_no, i.title()))
