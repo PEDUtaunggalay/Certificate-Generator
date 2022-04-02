@@ -17,7 +17,7 @@ max_no = len(name_list)
 # for i in name_list:
 for idx, i in enumerate(name_list):
 
-    im = Image.open("cert.jpg")
+    im = Image.open("certa4.jpg")
     d = ImageDraw.Draw(im)
     location = (275, 1050)
     text_color = (0, 137, 209)
