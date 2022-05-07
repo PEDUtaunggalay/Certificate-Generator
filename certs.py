@@ -10,19 +10,24 @@ data = pd.read_excel("fb.xlsx")
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
 
+#Import 'Father' List from the imported .xlsx file
+father_list = data['Father'].to_list()
+
 #Determining the length of the list
 max_no = len(name_list)
 
 #The Loops for creating certificates in bulk
 # for i in name_list:
 for idx, i in enumerate(name_list):
-
+    father = father_list[idx]
     im = Image.open("certa4.jpg")
     d = ImageDraw.Draw(im)
     location = (275, 1050)
+    location2 = (275,1250)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
-    d.text(location, i.title(), fill=text_color,font=font)
+    d.text(location, i.title(), fill=text_color, font=font)
+    d.text(location2, father.title(), fill=text_color, font=font)
     im.save("certificate_"+i+".pdf")
     print("(%d/%d) Certificate Created for:  %s" % (idx+1, max_no, i.title()))
     
