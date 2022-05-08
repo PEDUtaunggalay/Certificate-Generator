@@ -13,6 +13,7 @@ name_list = data['Name'].to_list()
 #Import 'Father' List from the imported .xlsx file
 father_list = data['Father'].to_list()
 
+#Import 'Phlon No.' List from the imported .xlsx file
 id_list = data['Phlon No.'].to_list()
 
 #Determining the length of the list
@@ -21,38 +22,37 @@ max_no = len(name_list)
 #The Loops for creating certificates in bulk
 # for i in name_list:
 for idx, i in enumerate(name_list):
+
+    # https://stackoverflow.com/a/10640168/5307753 
     # background = Image.open("certa4.jpg")
     # overlay = Image.open("1.png")
     # background = background.convert("RGBA")
     # overlay = overlay.convert("RGBA")
     # new_img = Image.blend(background, overlay, 0.5)
 
-    # getting student id 
+    # getting student id from id_list which is imported from .xlsx file
     id = id_list[idx]
-    print(idx)
-    print(id)
     
+    # https://www.geeksforgeeks.org/overlay-an-image-on-another-image-in-python/
     # opening certificate template
     img1 = Image.open(r"certa4.jpg")
-
     # opening student's photo 
     img2 = Image.open("%d.png" % (id))
-
     # No transparency mask specified, 
     # simulating an raster overlay
     img1.paste(img2, (250,500))
     # im = img1.convert("RGBA")
-    # img1 = Image.blend(img1, img2, 0.5)
     # img1.show()
     # img1.save("test.png")
-    # img1 = img1.convert("RGBA")
 
-    # no need to reopen another image, so?
-    # im = Image.open(img1)
+    # getting father's name
     father = father_list[idx]
     # im = Image.open("certa4.jpg")
+    # getting ready to start writing names on certificate
     d = ImageDraw.Draw(img1)
+    # location for student name 
     location = (275, 1050)
+    # location for father's name 
     location2 = (275,1250)
     text_color = (0, 137, 209)
     font = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
