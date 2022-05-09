@@ -16,6 +16,9 @@ father_list = data['Father'].to_list()
 #Import 'Phlon No.' List from the imported .xlsx file
 id_list = data['Phlon No.'].to_list()
 
+#Import 'Gender' List from the imported .xlsx file
+gi_list = data['Gender'].to_list()
+
 #Determining the length of the list
 max_no = len(name_list)
 
@@ -32,33 +35,63 @@ for idx, i in enumerate(name_list):
 
     # getting student id from id_list which is imported from .xlsx file
     id = id_list[idx]
+    fm = gi_list[idx]
+    print(fm)
     
     # https://www.geeksforgeeks.org/overlay-an-image-on-another-image-in-python/
     # opening certificate template
-    img1 = Image.open(r"certa4.jpg")
+    img1 = Image.open(r"template.jpg") # certa4.jpg
+    # img1.show()
     # opening student's photo 
-    img2 = Image.open("%d.png" % (id))
+    img2 = Image.open("images/photos/%d.png" % (id))
     # No transparency mask specified, 
     # simulating an raster overlay
-    img1.paste(img2, (250,500))
+    img1.paste(img2, (2760,810))
     # im = img1.convert("RGBA")
     # img1.show()
     # img1.save("test.png")
 
     # getting father's name
     father = father_list[idx]
+
+    # getting student's gender
+    gender = gi_list[idx]
+
     # im = Image.open("certa4.jpg")
     # getting ready to start writing names on certificate
     d = ImageDraw.Draw(img1)
     # location for student name 
-    location = (275, 1050)
+    location = (350, 900)
+
+    # location2 for gender identity 
+    location2 = (293, 1175)
+
     # location for father's name 
-    location2 = (275,1250)
-    text_color = (0, 137, 209)
-    font = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
+    location3 = (300,1300)
+
+    # blue 
+    # text_color = (0, 137, 209)
+    text_color = (0, 0, 0)
+    text_color2 = (9,35,138)
+
+    # orignal font fonts/AlexBrush-Regular.ttf 
+    font = ImageFont.truetype("fonts/SnellRoundhand/SnellBT-Bold.otf", 150, encoding="unic")
+    # font2 = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
+    font2 = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Regular.otf", 70, encoding="unic")
+
+    # draw student's name
     d.text(location, i.title(), fill=text_color, font=font)
-    d.text(location2, father.title(), fill=text_color, font=font)
+
+    # draw female/male 
+    if gender.title() == "Male":
+        d.text(location2, "Son of", fill=text_color2, font=font2)
+    else: 
+        d.text(location2, "Daughter of", fill=text_color2, font=font2)
     
+    # father's name 
+    d.text(location3, father.title(), fill=text_color, font=font)
+
+    # img1.show()
     img1.save("certificate_"+i+".pdf")
     print("(%d/%d) Certificate Created for:  %s" % (idx+1, max_no, i.title()))
     
