@@ -35,6 +35,7 @@ for idx, i in enumerate(name_list):
 
     # getting student id from id_list which is imported from .xlsx file
     id = id_list[idx]
+    print(id)
     fm = gi_list[idx]
     print(fm)
     
@@ -46,7 +47,7 @@ for idx, i in enumerate(name_list):
     img2 = Image.open("images/photos/%d.png" % (id))
     # No transparency mask specified, 
     # simulating an raster overlay
-    img1.paste(img2, (2760,810))
+    img1.paste(img2, (2760,815))
     # im = img1.convert("RGBA")
     # img1.show()
     # img1.save("test.png")
@@ -61,13 +62,16 @@ for idx, i in enumerate(name_list):
     # getting ready to start writing names on certificate
     d = ImageDraw.Draw(img1)
     # location for student name 
-    location = (350, 900)
+    location = (350, 925)
 
     # location2 for gender identity 
     location2 = (293, 1175)
 
     # location for father's name 
     location3 = (300,1300)
+
+    # location for Phlon No. 
+    location4 = (2855,1420)
 
     # blue 
     # text_color = (0, 137, 209)
@@ -78,6 +82,8 @@ for idx, i in enumerate(name_list):
     font = ImageFont.truetype("fonts/SnellRoundhand/SnellBT-Bold.otf", 150, encoding="unic")
     # font2 = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
     font2 = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Regular.otf", 70, encoding="unic")
+
+    font3 = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Bold.otf", 60, encoding="unic")
 
     # draw student's name
     d.text(location, i.title(), fill=text_color, font=font)
@@ -90,6 +96,9 @@ for idx, i in enumerate(name_list):
     
     # father's name 
     d.text(location3, father.title(), fill=text_color, font=font)
+
+    # draw Phlon No. 
+    d.text(location4, "P-No. %d" % id, fill=text_color, font=font3)
 
     # img1.show()
     img1.save("certificate_"+i+".pdf")
