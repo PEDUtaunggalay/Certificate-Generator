@@ -5,7 +5,9 @@ from PIL import Image, ImageDraw, ImageFont
 import pandas as pd
 
 #Import the file that contains all the details
-data = pd.read_excel("pbm_2022_b1.xlsx")
+# data = pd.read_excel("pbm_2022_b1.xlsx")
+#For custom entries 
+data = pd.read_excel("custom_entry.xlsx")
 
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
