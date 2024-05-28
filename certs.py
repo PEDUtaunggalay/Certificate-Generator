@@ -49,12 +49,14 @@ for idx, i in enumerate(name_list):
     # img1.show()
     
     # opening student's photo 
-    img2 = Image.open("images/pbm-2022/photos/%s.png" % (id))
+    img2 = Image.open("images/dhammapada-2024/photos/%s.png" % (id))
+
+    new_image = img2.resize((554, 554))
 
     # adding student's photo
     # No transparency mask specified, 
     # simulating an raster overlay
-    img1.paste(img2, (2760,815))
+    img1.paste(new_image, (2760,815))
     # im = img1.convert("RGBA")
     # img1.show()
     # img1.save("test.png")
@@ -88,7 +90,7 @@ for idx, i in enumerate(name_list):
     text_color_daughter_son = (9,35,138)
 
     # orignal font fonts/AlexBrush-Regular.ttf 
-    font_name = ImageFont.truetype("fonts/SnellRoundhand/SnellBT-Bold.otf", 150, encoding="unic")
+    font_name = ImageFont.truetype("fonts/SnellRoundhand/SnellBT-Bold.otf", 125, encoding="unic")
     # font2 = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
     font_daughter_son = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Regular.otf", 70, encoding="unic")
     font_p_no = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Bold.otf", 60, encoding="unic")
