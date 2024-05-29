@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import pandas as pd
 
 #Import the file that contains all the details
-data = pd.read_excel("pbm_2022_b1.xlsx")
+data = pd.read_excel("dhammapada_2024_p1.xlsx")
 
 #Import 'Name' List from the imported .xlsx file
 name_list = data['Name'].to_list()
@@ -45,7 +45,7 @@ for idx, i in enumerate(name_list):
     # https://www.geeksforgeeks.org/overlay-an-image-on-another-image-in-python/
     
     # opening certificate template
-    img1 = Image.open(r"images/pbm-2022-template.jpg") # certa4.jpg
+    img1 = Image.open(r"images/dhammapada-2024-template.jpg") # certa4.jpg
     # img1.show()
     
     # opening student's photo 
@@ -73,7 +73,7 @@ for idx, i in enumerate(name_list):
     d = ImageDraw.Draw(img1)
 
     # location for student name 
-    location_student_name = (350, 925)
+    location_student_name = (300, 925)
 
     # location2 for daughter of/son of
     location_daughter_son = (293, 1175)
@@ -90,7 +90,7 @@ for idx, i in enumerate(name_list):
     text_color_daughter_son = (9,35,138)
 
     # orignal font fonts/AlexBrush-Regular.ttf 
-    font_name = ImageFont.truetype("fonts/SnellRoundhand/SnellBT-Bold.otf", 125, encoding="unic")
+    font_name = ImageFont.truetype("fonts/Times New Roman/TIMESBI.TTF", 105, encoding="unic")
     # font2 = ImageFont.truetype("fonts/AlexBrush-Regular.ttf", 250, encoding="unic")
     font_daughter_son = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Regular.otf", 70, encoding="unic")
     font_p_no = ImageFont.truetype("fonts/AvenirNext/AvenirNextLTPro-Bold.otf", 60, encoding="unic")
@@ -111,7 +111,7 @@ for idx, i in enumerate(name_list):
     d.text(location_p_no, "P-No.%s" % id, fill=text_color, font=font_p_no)
 
     # img1.show()
-    img1.save("images/pbm-2022/certificates/pbm_2022_b1_%s.jpg" % (id))
+    img1.save("images/dhammapada-2024/certificates/dhammapada-2024_%s.jpg" % (id))
     print("(%d/%d) Certificate Created for:  %s" % (idx+1, max_no, i.title()))
     
     
